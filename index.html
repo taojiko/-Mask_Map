@@ -58,7 +58,7 @@
                       <li :key="key" @click="penTo(item)" class="list-group-item " :class="(item.properties.mask_adult || item.properties.mask_child) ? 'list-group-item-success' : 'list-group-item-danger'" >
                         <h4 class="font-weight-bold alert alert-warning text-center">{{ item.properties.name }}</h4>
                         <p class="mb-2 ">地址：<a :href="`https://www.google.com.tw/maps/place/${item.properties.address}`"
-                target="_blank" title="Google Map">{{ item.properties.address }}</a><br>
+                target="_blank" rel="noreferrer" title="Google Map">{{ item.properties.address }}</a><br>
     電話: {{item.properties.phone}}<br>
                           <small class="font-weight-bold text-dark">口罩販售時段: {{item.properties.note}}</small><br>
                           <small>最後更新時間: {{item.properties.updated}}</small>

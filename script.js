@@ -48,7 +48,7 @@ new Vue({
         const icon =(properties.mask_adult || properties.mask_child) ? greenIcon : redIcon;
            L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon}).addTo(osm).bindPopup(`<strong>${pharmacy.properties.name}</strong> <br>
     口罩剩餘：<strong>成人 - ${pharmacy.properties.mask_adult ? `${pharmacy.properties.mask_adult} 個` : '未取得資料'}/ 兒童 - ${pharmacy.properties.mask_child ? `${pharmacy.properties.mask_child} 個` : '未取得資料'}</strong><br>
-    地址: <a href="https://www.google.com.tw/maps/place/${pharmacy.properties.address}" target="_blank">${pharmacy.properties.address}</a><br>
+    地址: <a href="https://www.google.com.tw/maps/place/${pharmacy.properties.address}" target="_blank" rel="noreferrer">${pharmacy.properties.address}</a><br>
     電話: ${pharmacy.properties.phone}<br>
     <small>口罩販售時段: ${pharmacy.properties.note}</small>`);
          
@@ -76,7 +76,7 @@ new Vue({
       const icon =(properties.mask_adult || properties.mask_child) ? greenIcon : redIcon;
      L.marker([geometry.coordinates[1], geometry.coordinates[0]], {icon}).addTo(osm).bindPopup(`<strong>${pharmacy.properties.name}</strong> <br>
     口罩剩餘：<strong>成人 - ${pharmacy.properties.mask_adult ? `${pharmacy.properties.mask_adult} 個` : '未取得資料'}/ 兒童 - ${pharmacy.properties.mask_child ? `${pharmacy.properties.mask_child} 個` : '未取得資料'}</strong><br>
-    地址: <a href="https://www.google.com.tw/maps/place/${pharmacy.properties.address}" target="_blank">${pharmacy.properties.address}</a><br>
+    地址: <a href="https://www.google.com.tw/maps/place/${pharmacy.properties.address}" target="_blank" rel="noreferrer">${pharmacy.properties.address}</a><br>
     電話: ${pharmacy.properties.phone}<br>
     <small>口罩販售時段: ${pharmacy.properties.note}</small>`).openPopup();
       
