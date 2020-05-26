@@ -27,8 +27,8 @@ new Vue({
     taiwan,
     pharmacies:{},
     select: {
-      city: '臺北市',
-      area: '大安區',
+      city: '新北市',
+      area: '永和區',
     },
   },
   methods:{
