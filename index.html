@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - demo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/leaflet@1.6.0/dist/leaflet.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="app">
+    <div class="row no-gutters">
+    
+    <div class="col-sm-3">
+    
+        <div class="toolbox">
+            <div class="sticky-top bg-white shadow-sm p-2">
+                <div class="form-group d-flex">
+                    <label for="cityName" class="mr-2 col-form-label text-right">縣市</label>
+                    <div class="flex-fill">
+                        <select id="cityName" class="form-control" v-model="select.city" @change="select.area = ''">
+                          <option value="" >-- 請選擇 --</option>
+                          <option :value="c.CityName" v-for="c in taiwan" :key="c.CityName">
+                  {{ c.CityName }}
+                </option>
+                        </select>
+                    </div>
+                </div>
+              
+                <div class="form-group d-flex">
+                    <label for="area" class="mr-2 col-form-label text-right">地區</label>
+                    <div class="flex-fill">
+                        <select id="area" class="form-control"  v-model="select.area" @change="updateSelect">
+                            <option value="">-- 請選擇 --</option>
+                          <option :value="a.AreaName"
+                  v-for="a in taiwan.find((city) => city.CityName === select.city).AreaList"
+                  :key="a.AreaName" >
+                  {{ a.AreaName }}
+                </option>
+                        </select>
+                    </div>
+                </div>
+                <p class="mb-0 small text-muted text-center">
+                  <span class="m-1 badge badge-pill badge-warning p-2 col-sm-9">黃色代表成人還有</span>
+                  <span class="m-1 badge badge-pill badge-success p-2 col-sm-9">綠色代表小孩還有</span>
+                  <span class="m-1 badge badge-pill badge-danger p-2 col-sm-9">紅色代表沒有</span>   
+              </p>
+              
+            </div>
+
+            <ul class="list-group">
+                <template v-for="(item, key) in pharmacies" >
+                    
+                      <li :key="key" @click="penTo(item)" class="list-group-item " :class="(item.properties.mask_adult || item.properties.mask_child) ? 'list-group-item-success' : 'list-group-item-danger'" >
+                        <h4 class="font-weight-bold alert alert-warning text-center">{{ item.properties.name }}</h4>
+                        <p class="mb-2 ">地址：<a :href="`https://www.google.com.tw/maps/place/${item.properties.address}`"
+                target="_blank" title="Google Map">{{ item.properties.address }}</a><br>
+    電話: {{item.properties.phone}}<br>
+                          <small class="font-weight-bold text-dark">口罩販售時段: {{item.properties.note}}</small><br>
+                          <small>最後更新時間: {{item.properties.updated}}</small>
+                        </p>
+                        <div class="row">
+                          <span class="col m-1  badge p-2" :class="item.properties.mask_adult ? 'badge-warning' : 'badge-danger'">
+                          成人口罩：{{ item.properties.mask_adult}} 
+                        </span>
+                          
+                        <span class="col m-1 badge p-2" :class="item.properties.mask_child? 'badge-success' : 'badge-danger'">
+                         兒童口罩：{{ item.properties.mask_child}}
+                        </span>
+                        </div>
+                        
+                          
+                      </li>
+                 
+                </template>
+            </ul>
+        </div>
+    </div>
+        <div class="col-sm-9">
+            <div id="map"></div>
+        </div>
+</div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js'></script>
+<script src='https://unpkg.com/leaflet@1.6.0/dist/leaflet.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
