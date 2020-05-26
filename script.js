@@ -60,7 +60,7 @@ new Vue({
     updateSelect(){
       this.removeMapMarker();
       this.updateMarker();
-      console.log(this.data)
+      // console.log(this.data)
      
     },
     removeMapMarker() {
